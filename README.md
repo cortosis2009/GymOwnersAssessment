@@ -1,54 +1,22 @@
-# React + TypeScript + Vite
+# Ryan Sparks' GymOwners assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Here is my submission to GymOwners for my application process. I created this application using Vite and used npm for installing dependencies.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Run `npm install` to install all needed dependencies. I did not use many outside dependencies, but things like Typescript, Vite, and Zustand are needing installation.
 
-## Expanding the ESLint configuration
+## Design
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The instructions described this as a small component, so I chose to not build out an entire page of styling, but rather a component that could in theory be dropped into an application.
+I added a background color simply to make it more visually appealilng.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Functionality
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Although a small demonstration, I wanted to set up this code for scalability. I chose to use Zustand for global state management instead of passing props around or managing a bunch of local state. There isn't a ton of data sharing between components, but this allowed the components to be very slim and easy to understand.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+For the search filters, I made sure they both function with each other. You're able to select a role filter while also typing in the search field, although there isn't a ton of data to see this with. 
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+I used a standard html table for displaying the data. I kept the length of it dynamic so if in theory more data were to arrive, the table and all search functionality would scale with it. The only manual change needed would be if another role was added as I created a typescript type defining those.
+
+For fetching the mock data, I set it up to appear as much like a real API call as possible. I added a small delay for fetching data, added a URL and (basic) error handling.
